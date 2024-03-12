@@ -1,0 +1,51 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: ssh-job
+        # You may pin to the exact commit or the version.
+        # uses: nekiro/ssh-job@e0d177751aced5bcaf110ce4d782a681e5e12856
+        uses: nekiro/ssh-job@v1.0.5
+        with:
+          # Target machine hostname or ip
+          host: ec2-3-67-136-129.eu-central-1.compute.amazonaws.com
+          # Port to use while connecting
+          port: 22
+          # Ssh private key used to connect to target machine
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          # Ssh user
+          #envs: # optional
+          # Environment variables that are ommited from passing to the shell
+          command: |
+            cd test1
+            git pull
+            docker-compose up -d
+            
+          
+          # Export all action options to shell script
+          #exportActionOptions: # optiona
