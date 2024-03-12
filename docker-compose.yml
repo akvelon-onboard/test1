@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  dev:
+    build:
+      file: deploy/Dockerfile.dev
+  qa:
+    build:
+      file: deploy/Dockerfile.qa
+
+  prod:
+    build:
+      file: deploy/Dockerfile.prod
