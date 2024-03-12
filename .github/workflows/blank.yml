@@ -39,6 +39,7 @@ jobs:
           # Ssh private key used to connect to target machine
           key: ${{ secrets.SERVER_SSH_KEY }}
           # Ssh user
+          user: ubuntu
           #envs: # optional
           # Environment variables that are ommited from passing to the shell
           command: |
