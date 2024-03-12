@@ -2,11 +2,11 @@ version: "3.8"
 services:
   dev:
     build:
-      file: deploy/Dockerfile.dev
+      dockerfile: ../deploy/Dockerfile.dev
   qa:
     build:
-      file: deploy/Dockerfile.qa
+      dockerfile: ../deploy/Dockerfile.qa
 
   prod:
     build:
-      file: deploy/Dockerfile.prod
+      dockerfile: ../deploy/Dockerfile.prod
