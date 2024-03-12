@@ -3,13 +3,13 @@ services:
   dev:
     build:
       context: .
-      dockerfile: ../deploy/Dockerfile.dev
+      dockerfile: deploy/Dockerfile.dev
   qa:
     build:
       context: .
-      dockerfile: ../deploy/Dockerfile.qa
+      dockerfile: deploy/Dockerfile.qa
 
   prod:
     build:
       context: .
-      dockerfile: ../deploy/Dockerfile.prod
+      dockerfile: deploy/Dockerfile.prod
