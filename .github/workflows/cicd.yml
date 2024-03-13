@@ -33,7 +33,7 @@ jobs:
         uses: nekiro/ssh-job@v1.0.5
         with:
           # Target machine hostname or ip
-          host: ec2-3-67-136-129.eu-central-1.compute.amazonaws.com
+          host: ${{ variables.DEPLOY_SERVER_DEV }}
           # Port to use while connecting
           port: 22
           # Ssh private key used to connect to target machine
