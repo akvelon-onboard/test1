@@ -47,7 +47,7 @@ jobs:
         uses: nekiro/ssh-job@v1.0.5
         with:
           # Target machine hostname or ip
-          host: $DEPLOY_SERVER_DEV
+          host: ${{ vars.DEPLOY_SERVER_DEV }}
           # Port to use while connecting
           port: 22
           # Ssh private key used to connect to target machine
