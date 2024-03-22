@@ -42,7 +42,7 @@ jobs:
             echo "Deploying to qa environment..."
             # Your deploy command for qa
       - name: Deploy prod
-        if: github.ref== 'refs/heads/prod'
+        if: github.ref== 'refs/heads/main'
         run: |
             echo "Deploying to production environment..."
             # Your deploy command for main
