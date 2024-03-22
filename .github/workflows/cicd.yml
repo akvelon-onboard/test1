@@ -7,6 +7,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main","qa", "dev" ]
+  pull_request:
+    types: [closed]
+    branches: [ "main","qa", "dev" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,16 +26,21 @@ jobs:
   deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.event_name == 'push' && github.ref_type == 'branch'
     needs: lint
     steps:
       - uses: actions/checkout@v3
-
-      - name: deploy dev
-        if: github.ref == 'refs/heads/dev'
-        run: echo DEVed
-      - name: deploy qa
-        if: github.ref == 'refs/heads/qa'
-        run: echo QAed
-      - name: deploy prod
-        if: github.ref == 'refs/heads/main'
-        run: echo PRODDED
+      
+      - name: Deploy
+        run: |
+          # Commands to deploy based on the branch
+          if [ "${{ github.ref }}" = "refs/heads/dev" ]; then
+            echo "Deploying to dev environment..."
+            # Your deploy command for dev
+          elif [ "${{ github.ref }}" = "refs/heads/qa" ]; then
+            echo "Deploying to qa environment..."
+            # Your deploy command for qa
+          elif [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "Deploying to production environment..."
+            # Your deploy command for main
+          fi
