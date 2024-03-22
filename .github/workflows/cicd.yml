@@ -31,18 +31,18 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Deploy dev
-        if: github.refe== 'refs/heads/dev'
+        if: github.ref== 'refs/heads/dev'
         run: |
             echo "Deploying to dev environment..."
             # Your deploy command for dev
 
       - name: Deploy qa
-        if: github.refe== 'refs/heads/qa'
+        if: github.ref== 'refs/heads/qa'
         run: |
             echo "Deploying to qa environment..."
             # Your deploy command for qa
       - name: Deploy prod
-        if: github.refe== 'refs/heads/prod'
+        if: github.ref== 'refs/heads/prod'
         run: |
             echo "Deploying to production environment..."
             # Your deploy command for main
